@@ -8,10 +8,9 @@
   border-bottom: 35px solid black;
   border-right: 30px solid transparent;
   transition: border-right 0.5s ease-in-out;
-
-  &:hover {
-    opacity: 80%;
-  }
+}
+.left-block:hover {
+  opacity: 80%;
 }
 
 .right-block {
@@ -21,13 +20,12 @@
 
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
-  border-top: 35px solid #fff; 
+  border-top: 35px solid #fff;
   border-left: 30px solid transparent;
   transition: border-left 0.5s ease-in-out;
-
-  &:hover {
-    opacity: 80%;
-  }
+}
+.right-block:hover {
+  opacity: 80%;
 }
 
 div:hover > .left-block,
@@ -36,7 +34,7 @@ div:hover > .right-block {
   border-right: 0px solid transparent;
 }
 body {
-    background-color: rgb((0,48,98));
+  background-color: rgb((0, 48, 98));
 }
 /* .container {
   width: 100%;
