@@ -3503,8 +3503,10 @@
 
         if (currentStep === steps.length - 1) {
             nextBtn.innerHTML = "Продолжить"
-        } else {
+        } else if (currentStep < steps.length - 1) {
             nextBtn.innerHTML = "Далее"
+        } else {
+            nextBtn.innerHTML = "Продолжить"
         }
 
         stepPosition += steps[0].offsetWidth;
@@ -3544,8 +3546,10 @@
         stepsContainer.style.transform = `translateX(-${stepPosition}px)`;
         if (currentStep === steps.length - 1) {
             nextBtn.innerHTML = "Продолжить"
-        } else {
+        } else if (currentStep < steps.length - 1) {
             nextBtn.innerHTML = "Далее"
+        } else {
+            nextBtn.innerHTML = "Продолжить"
         }
     }
 
