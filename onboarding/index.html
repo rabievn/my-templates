@@ -90,7 +90,7 @@
 
         .onboarding-container .steps {
             display: flex;
-            width: 500% ;
+            width: 500%;
             transition: all 400ms ease;
             margin-inline: 16px;
         }
@@ -3503,6 +3503,8 @@
 
         if (currentStep === steps.length - 1) {
             nextBtn.innerHTML = "Продолжить"
+        } else {
+            nextBtn.innerHTML = "Далее"
         }
 
         stepPosition += steps[0].offsetWidth;
@@ -3542,6 +3544,8 @@
         stepsContainer.style.transform = `translateX(-${stepPosition}px)`;
         if (currentStep === steps.length - 1) {
             nextBtn.innerHTML = "Продолжить"
+        } else {
+            nextBtn.innerHTML = "Далее"
         }
     }
 
