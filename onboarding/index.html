@@ -3061,7 +3061,7 @@
     function showOverdraftConditions() {
         stepsContainer.style.transition = "unset";
         onboardingContainer.classList.remove("active");
-        currentStep = 0;
+        currentStep = 6;
         header.innerHTML = `<div class="title">Условие овердрафта</div>`;
         header.style.justifyContent = "center";
 
@@ -3521,43 +3521,50 @@
     });
 
     let startX = 0;
+    let moveX = 0;
+    let isSwiping = false;
 
     function startSwipe(event) {
         startX = event.touches ? event.touches[0].clientX : event.clientX;
+        isSwiping = true;
+    }
+
+    function moveSwipe(event) {
+        if (!isSwiping) return;
+        moveX = event.touches ? event.touches[0].clientX : event.clientX;
     }
 
     function endSwipe(event) {
+        if (!isSwiping) return;
+        isSwiping = false;
+
         let endX = event.changedTouches ? event.changedTouches[0].clientX : event.clientX;
         let difX = endX - startX;
 
-        if (difX > -50 && currentStep > 0) {
+        if (difX > 50 && currentStep > 0) {
             currentStep--;
-        } else if (difX < 50 && currentStep < steps.length - 1) {
+        } else if (difX < -50 && currentStep < steps.length - 1) {
             currentStep++;
         }
 
-        dots.forEach((d) => {
-            d.classList.remove("active");
-        });
-
+        dots.forEach((d) => d.classList.remove("active"));
         dots[currentStep].classList.add("active");
+
         stepPosition = currentStep * steps[0].offsetWidth;
         stepsContainer.style.transition = "all 400ms ease";
         stepsContainer.style.transform = `translateX(-${stepPosition}px)`;
-        if (currentStep === steps.length - 1) {
-            nextBtn.innerHTML = "Продолжить"
-        } else if (currentStep < steps.length - 1) {
-            nextBtn.innerHTML = "Далее"
-        } else {
-            nextBtn.innerHTML = "Продолжить"
-        }
+
+        nextBtn.innerHTML = currentStep === steps.length - 1 ? "Продолжить" : "Далее";
     }
 
     main.addEventListener("mousedown", startSwipe);
+    main.addEventListener("mousemove", moveSwipe);
     main.addEventListener("mouseup", endSwipe);
 
     main.addEventListener("touchstart", startSwipe);
+    main.addEventListener("touchmove", moveSwipe);
     main.addEventListener("touchend", endSwipe);
+
 </script>
 </body>
 </html>
